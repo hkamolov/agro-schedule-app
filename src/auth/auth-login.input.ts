@@ -1,0 +1,12 @@
+// src/auth/dto/auth-login.input.ts
+
+import { InputType, Field } from '@nestjs/graphql';
+
+@InputType()
+export class AuthLoginInput {
+  @Field()
+  username: string;
+
+  @Field()
+  password: string;
+}

@@ -1,0 +1,71 @@
+type Event {
+    id: Int!
+    startDate: String!
+    endDate: String!
+    name: String!
+    description: String!
+    location: Location!
+}
+
+type Location {
+    id: Int!
+    name: String!
+    events: [Event!]!
+}
+
+input CreateEventInput {
+    startDate: String!
+    endDate: String!
+    name: String!
+    description: String!
+    locationId: Int!
+}
+
+input UpdateEventInput {
+    startDate: String
+    endDate: String
+    name: String
+    description: String
+    locationId: Int
+}
+
+input CreateLocationInput {
+    name: String!
+}
+
+input UpdateLocationInput {
+    name: String
+}
+
+type Query {
+    events: [Event!]!
+    event(id: Int!): Event
+    locations: [Location!]!
+    location(id: Int!): Location
+}
+
+type Mutation {
+    createEvent(input: CreateEventInput!): Event
+    updateEvent(id: Int!, input: UpdateEventInput!): Event
+    deleteEvent(id: Int!): Event
+    createLocation(input: CreateLocationInput!): Location
+    updateLocation(id: Int!, input: UpdateLocationInput!): Location
+    deleteLocation(id: Int!): Location
+    login(input: AuthLoginInput!): Auth
+    register(input: AuthRegisterInput!): Auth
+}
+
+type Auth {
+  user: User
+  token: String
+}
+
+input AuthLoginInput {
+  username: String!
+  password: String!
+}
+
+input AuthRegisterInput {
+  username: String!
+  password: String!
+}
