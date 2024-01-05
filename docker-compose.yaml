@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  nestjs-app:
+    image: my-nestjs-image
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - postgres
+      - redis
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: my-username
+      POSTGRES_PASSWORD: my-password
+      POSTGRES_DB: my-database
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
